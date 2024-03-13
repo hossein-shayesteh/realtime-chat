@@ -1,7 +1,7 @@
-import { Image } from "@nextui-org/image";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { signIn } from "@/auth";
 import LoginButton from "@/src/components/UI/login/LoginButton";
+import Image from "next/image";
 
 const LoginPage = () => {
   return (

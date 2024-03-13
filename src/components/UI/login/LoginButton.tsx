@@ -1,6 +1,6 @@
 "use client";
 import { useFormStatus } from "react-dom";
-import { Image } from "@nextui-org/image";
+import { Image } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 
 const LoginButton = () => {
