@@ -26,12 +26,13 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
     };
 
     //response base on the currentUseId and idToAdd
-    if (!idToAdd)
-      return new Response("This user does not exist", { status: 400 });
+    if (!idToAdd) return new Response("User does not exist", { status: 400 });
     if (!currentUserId)
-      return new Response("Unauthorized user. please login", { status: 401 });
+      return new Response("Unauthorized user. Please log in", { status: 401 });
     if (currentUserId === idToAdd)
-      return new Response("You cant add yourself as a friend", { status: 400 });
+      return new Response("You can't add yourself as a friend", {
+        status: 400,
+      });
 
     //check if user is already added
     const isAlreadyAdded = (await fetchRedis(
@@ -41,7 +42,10 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
     )) as 0 | 1;
 
     if (isAlreadyAdded)
-      return new Response("Already added this user", { status: 400 });
+      return new Response(
+        "You have already sent a friend request to this user",
+        { status: 400 },
+      );
 
     //check if they are already friend
     const isAlreadyFriends = (await fetchRedis(
@@ -51,13 +55,13 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
     )) as 0 | 1;
 
     if (isAlreadyFriends)
-      return new Response("You are already friend with this user", {
+      return new Response("You are already friends with this user", {
         status: 400,
       });
 
     //FINALLY send friend request :)
     await db.sadd(`user:${idToAdd}:incoming_friend_requests`, currentUserId);
-    return new Response("Friend request have been send successfully");
+    return new Response("Friend request has been sent successfully");
   } catch (e) {
     if (e instanceof ZodError) {
       return new Response("Invalid request payload", { status: 422 });
