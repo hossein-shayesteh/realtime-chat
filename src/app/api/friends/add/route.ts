@@ -61,7 +61,9 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
 
     //FINALLY send friend request :)
     await db.sadd(`user:${idToAdd}:incoming_friend_requests`, currentUserId);
-    return new Response("Friend request has been sent successfully");
+    return new Response("Friend request has been sent successfully", {
+      status: 200,
+    });
   } catch (e) {
     if (e instanceof ZodError) {
       return new Response("Invalid request payload", { status: 422 });

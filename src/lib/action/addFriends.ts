@@ -25,8 +25,10 @@ export const addFriends = async (
     });
 
     const responseText = await response.text();
+    const responseStatus = response.status;
     return {
       message: responseText,
+      status: responseStatus,
     };
   } catch (e) {
     if (e instanceof ZodError) return { message: e.issues[0].message };
