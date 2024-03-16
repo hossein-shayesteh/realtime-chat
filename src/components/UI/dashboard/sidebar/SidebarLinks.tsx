@@ -2,8 +2,8 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { Badge, Button } from "@nextui-org/react";
+import { UserCheck, UserPlus } from "lucide-react";
 
 interface SidebarLinks {
   unseenFriendsRequest: number;
@@ -22,12 +22,7 @@ const SidebarLinks = ({ unseenFriendsRequest, sessionId }: SidebarLinks) => {
         variant={"flat"}
         className={`w-full bg-primary-50 ${pathname === "/dashboard/addFriends" && "bg-[#c0dcfc] delay-150"}`}
       >
-        <Image
-          src={"/add-friends.png"}
-          alt={"Add Friends icon"}
-          width={24}
-          height={24}
-        />
+        <UserPlus />
         Add Friends
       </Button>
       {unseenFriendsRequest === 0 ? (
@@ -38,12 +33,7 @@ const SidebarLinks = ({ unseenFriendsRequest, sessionId }: SidebarLinks) => {
           variant={"flat"}
           className={`w-full bg-primary-50 ${pathname === "/dashboard/friendsRequests" && "bg-[#c0dcfc] delay-150"}`}
         >
-          <Image
-            src={"/friends-request.png"}
-            alt={"Friends Requests icon"}
-            width={24}
-            height={24}
-          />
+          <UserCheck />
           Friends Requests
         </Button>
       ) : (
@@ -60,12 +50,7 @@ const SidebarLinks = ({ unseenFriendsRequest, sessionId }: SidebarLinks) => {
             variant={"flat"}
             className={`w-full bg-primary-50 ${pathname === "/dashboard/friendsRequests" && "bg-[#c0dcfc] delay-150"}`}
           >
-            <Image
-              src={"/friends-request.png"}
-              alt={"Friends Requests icon"}
-              width={24}
-              height={24}
-            />
+            <UserCheck />
             Friends Requests
           </Button>
         </Badge>

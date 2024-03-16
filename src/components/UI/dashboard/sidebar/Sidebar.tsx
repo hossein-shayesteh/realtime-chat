@@ -11,6 +11,7 @@ import fetchRedis from "@/src/helpers/redis";
 
 const Sidebar = async () => {
   const session = await auth();
+
   const unseenFriendsRequest = (
     await fetchRedis(
       "smembers",

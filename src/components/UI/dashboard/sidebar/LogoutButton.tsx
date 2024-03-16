@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { useFormStatus } from "react-dom";
+import { LogOut } from "lucide-react";
 
 const LogoutButton = () => {
   const { pending } = useFormStatus();
@@ -15,12 +15,7 @@ const LogoutButton = () => {
       type={"submit"}
       isLoading={pending}
     >
-      <Image
-        src={"/logout-icon.png"}
-        alt={"Logout icon"}
-        width={24}
-        height={24}
-      />
+      <LogOut />
       Logout
     </Button>
   );

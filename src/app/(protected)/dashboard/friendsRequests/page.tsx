@@ -19,7 +19,7 @@ const FriendsRequestsPage = async () => {
       return JSON.parse(userData);
     }),
   );
-  console.log(incomingFriendsRequest);
+
   return (
     <div className="lg:w-[500px] w-full mt-10 px-10 rounded-2xl flex justify-center flex-col">
       <h1 className={"lg:text-4xl text-3xl my-6"}>Friends request</h1>
