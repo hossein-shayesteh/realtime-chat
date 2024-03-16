@@ -26,6 +26,7 @@ export const addFriends = async (
 
     const responseText = await response.text();
     const responseStatus = response.status;
+
     return {
       message: responseText,
       status: responseStatus,

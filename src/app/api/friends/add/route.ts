@@ -1,10 +1,10 @@
 import { addFriendsValidation } from "@/src/lib/validation/addFriendsValidation";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import fetchRedis from "@/src/helpers/redis";
 import { db } from "@/src/lib/database/db";
 import { ZodError } from "zod";
 
-export const POST = async (request: NextRequest, response: NextResponse) => {
+export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
     const { email } = addFriendsValidation.parse({ email: body.email });

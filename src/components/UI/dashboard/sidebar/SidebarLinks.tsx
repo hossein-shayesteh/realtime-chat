@@ -5,7 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge, Button } from "@nextui-org/react";
 
-const SidebarLinks = () => {
+interface SidebarLinks {
+  unseenFriendsRequest: number;
+  sessionId: string | undefined;
+}
+
+const SidebarLinks = ({ unseenFriendsRequest, sessionId }: SidebarLinks) => {
   const pathname = usePathname();
 
   return (
@@ -25,7 +30,7 @@ const SidebarLinks = () => {
         />
         Add Friends
       </Button>
-      <Badge content="5" color="danger" shape="circle" placement={"top-right"}>
+      {unseenFriendsRequest === 0 ? (
         <Button
           as={Link}
           href={"/dashboard/friendsRequests"}
@@ -41,7 +46,30 @@ const SidebarLinks = () => {
           />
           Friends Requests
         </Button>
-      </Badge>
+      ) : (
+        <Badge
+          content={unseenFriendsRequest}
+          color="danger"
+          shape="circle"
+          placement={"top-right"}
+        >
+          <Button
+            as={Link}
+            href={"/dashboard/friendsRequests"}
+            color={"primary"}
+            variant={"flat"}
+            className={`w-full bg-primary-50 ${pathname === "/dashboard/friendsRequests" && "bg-[#c0dcfc] delay-150"}`}
+          >
+            <Image
+              src={"/friends-request.png"}
+              alt={"Friends Requests icon"}
+              width={24}
+              height={24}
+            />
+            Friends Requests
+          </Button>
+        </Badge>
+      )}
     </div>
   );
 };

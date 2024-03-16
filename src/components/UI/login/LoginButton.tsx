@@ -1,7 +1,6 @@
 "use client";
 import { useFormStatus } from "react-dom";
-import { Image } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
+import { Image, Button } from "@nextui-org/react";
 
 const LoginButton = () => {
   const { pending } = useFormStatus();

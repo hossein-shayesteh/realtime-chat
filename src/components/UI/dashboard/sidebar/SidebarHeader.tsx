@@ -1,9 +1,10 @@
-import { Avatar } from "@nextui-org/react";
 import React from "react";
+import { Avatar } from "@nextui-org/react";
 import { auth } from "@/auth";
 
 const SidebarHeader = async () => {
   const session = await auth();
+
   return (
     <div className="flex gap-5">
       <Avatar

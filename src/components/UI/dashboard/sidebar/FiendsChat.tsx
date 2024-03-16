@@ -18,7 +18,7 @@ const FiendsChat = () => {
             <div>10:25</div>
           </h4>
           <div className={"flex justify-between items-center w-full"}>
-            <div className="text-xs tracking-tight text-default-400 w-40 overflow-hidden text-ellipsis text-nowrap">
+            <div className="text-xs tracking-tight text-default-400 w-40 text-nowrap truncate">
               <span className={"font-bold text-default-600"}>you: </span>
               message preview message previewmessage previewmessage preview
             </div>

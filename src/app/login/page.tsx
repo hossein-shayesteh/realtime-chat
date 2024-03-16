@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
+import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import { signIn } from "@/auth";
 import LoginButton from "@/src/components/UI/login/LoginButton";
 import Image from "next/image";
@@ -11,7 +11,7 @@ const LoginPage = () => {
           <Image
             alt="messenger logo"
             height={100}
-            src="/messenger.png"
+            src="/Blink.png"
             width={100}
           />
         </CardHeader>
