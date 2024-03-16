@@ -6,3 +6,7 @@ export const addFriendsValidation = z.object({
     .email({ message: "This is not a valid email." })
     .min(1, { message: "Required." }),
 });
+
+export const stringValidation = z.object({
+  id: z.string(),
+});

@@ -1,8 +1,8 @@
 "use client";
 import { useFormState } from "react-dom";
 import { Chip, Input } from "@nextui-org/react";
-import AddFriendsButton from "@/src/components/UI/dashboard/addFriends/addFriendsButton";
 import { addFriends } from "@/src/lib/action/addFriends";
+import FormButton from "@/src/components/UI/shared/FormButton";
 
 const AddFriendsPage = () => {
   const [state, formAction] = useFormState(addFriends, { message: "" });
@@ -25,7 +25,15 @@ const AddFriendsPage = () => {
             state && state.status !== 200 ? state.message : undefined
           }
         />
-        <AddFriendsButton />
+        <FormButton
+          type={"submit"}
+          size={"md"}
+          variant={"flat"}
+          color={"primary"}
+          className={"my-2 w-36"}
+        >
+          add
+        </FormButton>
       </form>
       {state && state.status === 200 && (
         <Chip color="success" className={"text-white"}>

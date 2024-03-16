@@ -1,7 +1,7 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import { signIn } from "@/auth";
-import LoginButton from "@/src/components/UI/login/LoginButton";
 import Image from "next/image";
+import FormButton from "@/src/components/UI/shared/FormButton";
 
 const LoginPage = () => {
   return (
@@ -26,7 +26,22 @@ const LoginPage = () => {
               await signIn("google");
             }}
           >
-            <LoginButton />
+            <FormButton
+              color={"primary"}
+              variant={"flat"}
+              type={"submit"}
+              fullWidth
+              endContent={
+                <Image
+                  alt="Google logo"
+                  height={25}
+                  src="/google-logo.svg"
+                  width={25}
+                ></Image>
+              }
+            >
+              Google
+            </FormButton>
           </form>
         </CardFooter>
       </Card>

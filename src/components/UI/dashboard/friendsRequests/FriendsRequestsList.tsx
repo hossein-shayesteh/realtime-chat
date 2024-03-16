@@ -17,6 +17,7 @@ const FriendsRequestsList = ({
           name={user.name}
           image={user.image}
           key={user.id}
+          id={user.id}
         />
       ))}
     </div>

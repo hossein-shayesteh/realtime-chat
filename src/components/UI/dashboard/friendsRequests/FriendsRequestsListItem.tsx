@@ -1,15 +1,21 @@
 import React from "react";
 import { Avatar } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
 import { Check, X } from "lucide-react";
+import friendRequestAction from "@/src/lib/action/friendRequestAction";
+import FormButton from "@/src/components/UI/shared/FormButton";
 
 const FriendsRequestsListItem = ({
   name,
   image,
+  id,
 }: {
   name: string;
   image: string;
+  id: string;
 }) => {
+  const acceptRequest = friendRequestAction.bind(null, "acceptRequest", id);
+  const deleteRequest = friendRequestAction.bind(null, "deleteRequest", id);
+
   return (
     <div className="flex gap-5 h-8">
       <Avatar
@@ -24,14 +30,32 @@ const FriendsRequestsListItem = ({
           <div>{name}</div>
         </h4>
         <div className={"flex flex-row gap-1"}>
-          <Button size={"sm"} variant={"flat"} color={"success"}>
-            <Check />
-            Confirm
-          </Button>
-          <Button size={"sm"} variant={"flat"} color={"danger"}>
-            <X />
-            Delete
-          </Button>
+          <form action={acceptRequest}>
+            <FormButton
+              size={"sm"}
+              variant={"flat"}
+              color={"success"}
+              type={"submit"}
+              className={"w-24"}
+              hideContentOnPending
+              startContent={<Check />}
+            >
+              Confirm
+            </FormButton>
+          </form>
+          <form action={deleteRequest}>
+            <FormButton
+              size={"sm"}
+              variant={"flat"}
+              color={"danger"}
+              type={"submit"}
+              className={"w-24"}
+              hideContentOnPending
+              startContent={<X />}
+            >
+              Delete
+            </FormButton>
+          </form>
         </div>
       </div>
     </div>
