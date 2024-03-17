@@ -2,6 +2,7 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import { signIn } from "@/auth";
 import Image from "next/image";
 import FormButton from "@/src/components/UI/shared/FormButton";
+import signInAction from "@/src/lib/action/signInAction";
 
 const LoginPage = () => {
   return (
@@ -19,13 +20,7 @@ const LoginPage = () => {
           <p className={"text-center"}>Sign in to your account</p>
         </CardBody>
         <CardFooter>
-          <form
-            className={"w-full"}
-            action={async () => {
-              "use server";
-              await signIn("google");
-            }}
-          >
+          <form className={"w-full"} action={signInAction}>
             <FormButton
               color={"primary"}
               variant={"flat"}

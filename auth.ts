@@ -22,8 +22,5 @@ export const {
       }
       return session;
     },
-    redirect() {
-      return "/dashboard";
-    },
   },
 });

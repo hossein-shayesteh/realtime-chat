@@ -21,6 +21,7 @@ const Sidebar = async () => {
 
   return (
     <Card
+      radius={"none"}
       as={"aside"}
       className={
         "h-full flex max-w-xs grow flex-col gap-y-5 overflow-y-auto p-6 shrink-0 "
