@@ -10,3 +10,13 @@ export const addFriendsValidation = z.object({
 export const stringValidation = z.object({
   id: z.string(),
 });
+
+export const messageValidation = z.object({
+  id: z.string(),
+  senderId: z.string(),
+  receiverId: z.string(),
+  text: z.string(),
+  timestamp: z.number(),
+});
+
+export const messageArrayValidation = z.array(messageValidation);
