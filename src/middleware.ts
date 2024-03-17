@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 
 export default auth((req) => {
+  console.log("middleware", req.url, req.auth);
   // req.auth
 });
 
