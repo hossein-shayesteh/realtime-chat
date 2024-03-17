@@ -7,10 +7,9 @@ import { UserCheck, UserPlus } from "lucide-react";
 
 interface SidebarLinks {
   unseenFriendsRequest: number;
-  sessionId: string | undefined;
 }
 
-const SidebarLinks = ({ unseenFriendsRequest, sessionId }: SidebarLinks) => {
+const SidebarLinks = ({ unseenFriendsRequest }: SidebarLinks) => {
   const pathname = usePathname();
 
   return (

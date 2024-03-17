@@ -8,16 +8,19 @@ import SidebarChatList from "@/src/components/UI/dashboard/sidebar/SidebarChatLi
 import SidebarFooter from "@/src/components/UI/dashboard/sidebar/SidebarFooter";
 import { auth } from "@/auth";
 import fetchRedis from "@/src/helpers/redis";
+import fetchFriends from "@/src/helpers/fetchFriends";
+import fetchUnseenFriendsRequest from "@/src/helpers/fetchUnseenFriendsRequest";
 
 const Sidebar = async () => {
   const session = await auth();
 
-  const unseenFriendsRequest = (
-    await fetchRedis(
-      "smembers",
-      `user:${session?.user?.id}:incoming_friend_requests`,
-    )
-  ).length;
+  // fetch unseen Friends Request
+  const unseenFriendsRequest = await fetchUnseenFriendsRequest(
+    session?.user?.id,
+  );
+
+  //fetch friends list
+  const friends = await fetchFriends(session?.user?.id);
 
   return (
     <Card
@@ -30,12 +33,9 @@ const Sidebar = async () => {
       <CardHeader className="justify-between">
         <SidebarHeader />
       </CardHeader>
-      <SidebarLinks
-        unseenFriendsRequest={unseenFriendsRequest}
-        sessionId={session?.user?.id}
-      />
+      <SidebarLinks unseenFriendsRequest={unseenFriendsRequest.length} />
       <CardBody className={"p-0 border"}>
-        <SidebarChatList />
+        <SidebarChatList friends={friends} currentUserId={session?.user?.id} />
       </CardBody>
       <CardFooter>
         <SidebarFooter />

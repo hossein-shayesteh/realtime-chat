@@ -17,7 +17,7 @@ const Chats = async ({ params: { chatId } }: PageProps) => {
     // If not authorized, display a 404 Not Found page
     notFound();
   }
-
+  console.log(userId1, userId2);
   return <div></div>;
 };
 

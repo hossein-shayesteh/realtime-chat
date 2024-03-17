@@ -1,28 +1,18 @@
 import React from "react";
 import FiendsChat from "@/src/components/UI/dashboard/sidebar/FiendsChat";
 
-const SidebarChatList = () => {
+interface Props {
+  friends: User[];
+  currentUserId?: string;
+}
+
+const SidebarChatList = ({ friends, currentUserId }: Props) => {
   return (
-    <>
-      <div className={"flex flex-col gap-3 pt-3"}>
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-        <FiendsChat />
-      </div>
-    </>
+    <div className={""}>
+      {friends.map((user) => (
+        <FiendsChat key={user.id} {...user} currentUserId={currentUserId} />
+      ))}
+    </div>
   );
 };
 export default SidebarChatList;
