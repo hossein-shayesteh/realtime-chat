@@ -24,7 +24,7 @@ const Sidebar = async () => {
       radius={"none"}
       as={"aside"}
       className={
-        "h-full flex max-w-xs grow flex-col gap-y-5 overflow-y-auto p-6 shrink-0 "
+        "h-full flex max-w-xs grow flex-col gap-y-5 overflow-y-auto shrink-0 "
       }
     >
       <CardHeader className="justify-between">
@@ -34,7 +34,7 @@ const Sidebar = async () => {
         unseenFriendsRequest={unseenFriendsRequest}
         sessionId={session?.user?.id}
       />
-      <CardBody>
+      <CardBody className={"p-0 border"}>
         <SidebarChatList />
       </CardBody>
       <CardFooter>

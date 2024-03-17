@@ -6,7 +6,7 @@ const SidebarHeader = async () => {
   const session = await auth();
 
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 p-3">
       <Avatar
         showFallback
         isBordered

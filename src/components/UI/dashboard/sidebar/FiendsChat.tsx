@@ -4,7 +4,7 @@ import React from "react";
 const FiendsChat = () => {
   return (
     <>
-      <div className="flex gap-5 h-8">
+      <div className="flex gap-5 h-8 px-6">
         <Avatar
           showFallback
           radius="full"
