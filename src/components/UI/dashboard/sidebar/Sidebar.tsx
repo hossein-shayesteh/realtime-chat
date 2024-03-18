@@ -7,7 +7,6 @@ import { CardFooter } from "@nextui-org/card";
 import SidebarChatList from "@/src/components/UI/dashboard/sidebar/SidebarChatList";
 import SidebarFooter from "@/src/components/UI/dashboard/sidebar/SidebarFooter";
 import { auth } from "@/auth";
-import fetchRedis from "@/src/helpers/redis";
 import fetchFriends from "@/src/helpers/fetchFriends";
 import fetchUnseenFriendsRequest from "@/src/helpers/fetchUnseenFriendsRequest";
 
@@ -27,7 +26,7 @@ const Sidebar = async () => {
       radius={"none"}
       as={"aside"}
       className={
-        "h-full flex max-w-xs grow flex-col gap-y-5 overflow-y-auto shrink-0 "
+        "h-full flex max-w-xs grow flex-col  overflow-y-auto shrink-0 z-50"
       }
     >
       <CardHeader className="justify-between">
@@ -37,7 +36,7 @@ const Sidebar = async () => {
       <CardBody className={"p-0 border"}>
         <SidebarChatList friends={friends} currentUserId={session?.user?.id} />
       </CardBody>
-      <CardFooter>
+      <CardFooter className={"p-0"}>
         <SidebarFooter />
       </CardFooter>
     </Card>

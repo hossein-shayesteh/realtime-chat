@@ -1,15 +1,22 @@
+"use client";
 import { Avatar, Divider } from "@nextui-org/react";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import chatHrefConstructor from "@/src/helpers/chatHrefConstructor";
 
 interface Props extends User {
   currentUserId?: string;
 }
+
 const FiendsChat = ({ name, id, image, email, currentUserId }: Props) => {
+  const pathname = usePathname();
+  const href = chatHrefConstructor(id, currentUserId);
+
   return (
     <Link
-      href={`/dashboard/chat/${currentUserId}--${id}`}
-      className={"flex flex-col gap-3 pt-3"}
+      href={`/dashboard/chat/${href}`}
+      className={`flex flex-col gap-3 pt-3 ${pathname === `/dashboard/chat/${href}` && "bg-gray-100"}`}
     >
       <div className="flex gap-5 h-8 px-6">
         <Avatar

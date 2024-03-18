@@ -6,7 +6,7 @@ import signOutAction from "@/src/lib/action/signOutAction";
 
 const SidebarFooter = () => {
   return (
-    <form action={signOutAction} className={"w-full p-4"}>
+    <form action={signOutAction} className={"w-full p-6"}>
       <FormButton
         variant={"flat"}
         color={"danger"}

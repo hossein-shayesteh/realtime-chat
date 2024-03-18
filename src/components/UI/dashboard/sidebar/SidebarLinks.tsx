@@ -13,7 +13,7 @@ const SidebarLinks = ({ unseenFriendsRequest }: SidebarLinks) => {
   const pathname = usePathname();
 
   return (
-    <div className={"flex flex-col text-xl gap-2 -my-3 px-6"}>
+    <div className={"flex flex-col text-xl gap-2 mb-3 px-6"}>
       <Button
         as={Link}
         href={"/dashboard/addFriends"}

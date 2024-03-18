@@ -2,7 +2,7 @@ import fetchRedis from "@/src/helpers/redis";
 import { messageArrayValidation } from "@/src/lib/validation/addFriendsValidation";
 import { notFound } from "next/navigation";
 
-export const getChatMessages = async (chatId: string) => {
+export const fetchChatMessages = async (chatId: string) => {
   try {
     // Fetch messages from Redis sorted set
     const results = (await fetchRedis(

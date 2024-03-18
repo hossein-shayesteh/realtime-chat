@@ -1,5 +1,18 @@
 import { auth } from "@/auth";
 import { notFound } from "next/navigation";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Avatar,
+} from "@nextui-org/react";
+import Link from "next/link";
+import fetchUser from "@/src/helpers/fetchUser";
+import ChatHeader from "@/src/components/UI/dashboard/chat/ChatHeader";
+import ChatFooter from "@/src/components/UI/dashboard/chat/ChatFooter";
+import ChatBody from "@/src/components/UI/dashboard/chat/ChatBody";
 
 interface PageProps {
   params: { chatId: string };
@@ -17,8 +30,30 @@ const Chats = async ({ params: { chatId } }: PageProps) => {
     // If not authorized, display a 404 Not Found page
     notFound();
   }
-  console.log(userId1, userId2);
-  return <div></div>;
+
+  //find chat partner
+  const chatPartnerId = session?.user?.id === userId1 ? userId2 : userId1;
+  const chatPartner = await fetchUser(chatPartnerId);
+
+  return (
+    <Card
+      className="h-full flex grow flex-col overflow-y-auto shrink-0"
+      radius={"none"}
+      shadow={"none"}
+    >
+      <CardHeader className="flex gap-3">
+        <ChatHeader {...chatPartner} />
+      </CardHeader>
+      <Divider />
+      <CardBody>
+        <ChatBody />
+      </CardBody>
+      <Divider />
+      <CardFooter>
+        <ChatFooter />
+      </CardFooter>
+    </Card>
+  );
 };
 
 export default Chats;
