@@ -21,9 +21,14 @@ const ChatBody = ({ messages, sessionId }: Props) => {
             key={message.id}
           >
             <Card
-              className={`p-2 flex flex-col max-w-unit-9xl  ${isTextPersian && " text-right persian-text"}  ${isCurrentUser && "bg-primary-100"}`}
+              className={`p-2 flex flex-col max-w-unit-9xl    ${isCurrentUser && "bg-primary-100"}`}
             >
-              <p>{message.text}</p>
+              <p
+                dir={isTextPersian ? "rtl" : undefined}
+                className={`${isTextPersian && " text-right persian-text"}`}
+              >
+                {message.text}
+              </p>
               <p className={"flex text-xs justify-end text-default-500"}>
                 {time}
               </p>
