@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 interface FormButtonProps extends ButtonProps {
   children?: React.ReactNode;
   hideContentOnPending?: boolean;
+  hideChildrenOnPending?: boolean;
 }
 
 const FormButton: React.FC<FormButtonProps> = (props) => {
@@ -23,7 +24,7 @@ const FormButton: React.FC<FormButtonProps> = (props) => {
         props.hideContentOnPending && pending ? false : props.startContent
       }
     >
-      {props.children}
+      {props.hideChildrenOnPending && pending ? undefined : props.children}
     </Button>
   );
 };

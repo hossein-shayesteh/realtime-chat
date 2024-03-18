@@ -51,7 +51,7 @@ const Chats = async ({ params: { chatId } }: PageProps) => {
       </CardBody>
       <Divider />
       <CardFooter className={"p-0"}>
-        <ChatFooter />
+        <ChatFooter chatId={chatId} />
       </CardFooter>
     </Card>
   );

@@ -3,15 +3,22 @@ import { useFormState } from "react-dom";
 import { Chip, Input } from "@nextui-org/react";
 import { addFriends } from "@/src/lib/action/addFriends";
 import FormButton from "@/src/components/UI/shared/FormButton";
+import { useRef } from "react";
 
 const AddFriendsPage = () => {
   const [state, formAction] = useFormState(addFriends, { message: "" });
-
+  const ref = useRef<HTMLFormElement>(null);
   return (
     <div className="lg:w-[500px] w-full mt-10 px-10 rounded-2xl flex justify-center flex-col">
       <h1 className={"lg:text-4xl text-3xl my-6"}>Add a friend</h1>
       <p className={"my-2"}>add a friend with Email</p>
-      <form action={formAction}>
+      <form
+        ref={ref}
+        action={async (formData) => {
+          formAction(formData);
+          ref.current?.reset();
+        }}
+      >
         <Input
           required
           name={"email"}
