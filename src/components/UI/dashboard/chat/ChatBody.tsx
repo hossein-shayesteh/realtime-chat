@@ -1,4 +1,4 @@
-import { Avatar, Card } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
 import generateChatTime from "@/src/helpers/generateChatTime";
 import isPersian from "@/src/helpers/isPersian";
 
@@ -7,7 +7,7 @@ interface Props {
   sessionId?: string;
 }
 
-const ChatBody = ({ messages, sessionId }: Props) => {
+const ChatBody = async ({ messages, sessionId }: Props) => {
   return (
     <main className="flex flex-col-reverse flex-grow overflow-y-auto p-4 gap-4">
       {messages.map((message) => {

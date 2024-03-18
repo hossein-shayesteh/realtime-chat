@@ -7,7 +7,7 @@ export const fetchChatMessages = async (chatId: string) => {
     // Fetch messages from Redis sorted set
     const results = (await fetchRedis(
       "zrange",
-      `user:${chatId}:messages`,
+      `chat:${chatId}:messages`,
       0,
       -1,
     )) as string[];
