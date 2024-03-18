@@ -26,7 +26,7 @@ const Sidebar = async () => {
       radius={"none"}
       as={"aside"}
       className={
-        "h-full flex max-w-xs grow flex-col  overflow-y-auto shrink-0 z-50"
+        "h-full flex max-w-xs grow flex-col  overflow-y-auto shrink-0 z-10 "
       }
     >
       <CardHeader className="justify-between">

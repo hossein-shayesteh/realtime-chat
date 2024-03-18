@@ -2,10 +2,14 @@ import React from "react";
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Vazirmatn } from "next/font/google";
 import NextUIProviders from "@/src/components/UI/NextUI/NextUIProviders";
 
 const inter = Inter({ subsets: ["latin"] });
+const vazir = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazir",
+});
 
 export const metadata: Metadata = {
   title: "Blink - Instant Messaging App",
@@ -20,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className}  ${vazir.variable}`}>
         <NextUIProviders>{children}</NextUIProviders>
       </body>
     </html>
