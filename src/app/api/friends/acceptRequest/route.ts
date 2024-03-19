@@ -5,6 +5,8 @@ import fetchRedis from "@/src/helpers/redis";
 import { db } from "@/src/lib/database/db";
 import { ZodError } from "zod";
 import { revalidatePath } from "next/cache";
+import { pusherServer } from "@/src/lib/pusher/pusher";
+import toPusherKey from "@/src/helpers/toPusherKey";
 
 export const POST = async (request: NextRequest, response: NextResponse) => {
   try {
@@ -39,6 +41,15 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
       return new Response("This user didn't sent friend request to you", {
         status: 400,
       });
+
+    //send realtime friend request
+    await pusherServer.trigger(
+      toPusherKey(`user:${session.user?.id}:incoming_friend_requests`),
+      "delete_friend_requests",
+      {
+        id: idToAdd,
+      },
+    );
 
     //FINALLY accept friend request :)
     await db.sadd(`user:${session.user?.id}:friends`, idToAdd);
