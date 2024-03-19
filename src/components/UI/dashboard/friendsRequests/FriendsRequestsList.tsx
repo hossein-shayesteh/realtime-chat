@@ -1,9 +1,12 @@
 import FriendsRequestsListItem from "@/src/components/UI/dashboard/friendsRequests/FriendsRequestsListItem";
+import { Session } from "next-auth";
 
 const FriendsRequestsList = ({
   incomingFriendsRequest,
+  session,
 }: {
   incomingFriendsRequest: User[];
+  session: Session | null;
 }) => {
   if (incomingFriendsRequest.length === 0)
     return (
@@ -18,6 +21,7 @@ const FriendsRequestsList = ({
           image={user.image}
           key={user.id}
           id={user.id}
+          email={user.email}
         />
       ))}
     </div>

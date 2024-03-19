@@ -4,15 +4,7 @@ import { Check, X } from "lucide-react";
 import friendRequestAction from "@/src/lib/action/friendRequestAction";
 import FormButton from "@/src/components/UI/shared/FormButton";
 
-const FriendsRequestsListItem = ({
-  name,
-  image,
-  id,
-}: {
-  name: string;
-  image: string;
-  id: string;
-}) => {
+const FriendsRequestsListItem = ({ name, image, email, id }: User) => {
   const acceptRequest = friendRequestAction.bind(null, "acceptRequest", id);
   const deleteRequest = friendRequestAction.bind(null, "deleteRequest", id);
 

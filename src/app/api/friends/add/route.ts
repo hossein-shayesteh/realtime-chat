@@ -3,13 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 import fetchRedis from "@/src/helpers/redis";
 import { db } from "@/src/lib/database/db";
 import { ZodError } from "zod";
+import { pusherServer } from "@/src/lib/pusher/pusher";
+import toPusherKey from "@/src/helpers/toPusherKey";
+import { Session } from "next-auth";
 
-export const POST = async (request: NextRequest, response: NextResponse) => {
+export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
     const { email } = addFriendsValidation.parse({ email: body.email });
-    const currentUserId = body.id;
-    // connect to database with REST API
+    const session: Session = body.session;
+
+    const currentUserId = session.user?.id;
+
+    //connect to database with REST API
     const RESTResponse = await fetch(
       `${process.env.UPSTASH_REDIS_REST_URL}/get/user:email:${email}`,
       {
@@ -59,7 +65,19 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
         status: 400,
       });
 
-    //FINALLY send friend request :)
+    //send realtime friend request
+    await pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
+      "incoming_friend_requests",
+      {
+        id: session.user?.id,
+        name: session.user?.name,
+        email: session.user?.email,
+        image: session.user?.image,
+      },
+    );
+
+    // //FINALLY send friend request :)
     await db.sadd(`user:${idToAdd}:incoming_friend_requests`, currentUserId);
     return new Response("Friend request has been sent successfully", {
       status: 200,

@@ -20,7 +20,7 @@ export const addFriends = async (
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: validatedEmail.email,
-        id: session?.user?.id,
+        session: session,
       }),
     });
 
