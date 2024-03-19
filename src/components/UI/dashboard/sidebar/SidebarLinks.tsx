@@ -4,12 +4,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Badge, Button } from "@nextui-org/react";
 import { UserCheck, UserPlus } from "lucide-react";
+import { Session } from "next-auth";
 
 interface SidebarLinks {
   unseenFriendsRequest: number;
+  session: Session | null;
 }
 
-const SidebarLinks = ({ unseenFriendsRequest }: SidebarLinks) => {
+const SidebarLinks = ({ unseenFriendsRequest, session }: SidebarLinks) => {
   const pathname = usePathname();
 
   return (

@@ -1,9 +1,10 @@
 "use client";
 import FriendsRequestsListItem from "@/src/components/UI/dashboard/friendsRequests/FriendsRequestsListItem";
 import { Session } from "next-auth";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { pusherClient } from "@/src/lib/pusher/pusher";
 import toPusherKey from "@/src/helpers/toPusherKey";
+import { revalidation } from "@/src/lib/action/revalidation";
 
 const FriendsRequestsList = ({
   incomingFriendsRequest,
@@ -12,29 +13,16 @@ const FriendsRequestsList = ({
   incomingFriendsRequest: User[];
   session: Session | null;
 }) => {
-  // State to store incoming friends requests
-  const [friendsRequests, setFriendsRequest] = useState(incomingFriendsRequest);
-
   // Update state when new friends requests arrive or are deleted
   useEffect(() => {
     // Handler for updating incoming friends requests
-    const handleUpdateIncomingFriendsRequest = ({
-      id,
-      image,
-      email,
-      name,
-    }: User) => {
-      setFriendsRequest((prevState) => [
-        ...prevState,
-        { id, image, email, name },
-      ]);
+    const handleUpdateIncomingFriendsRequest = () => {
+      revalidation("/dashboard");
     };
 
     // Handler for deleting incoming friends requests
-    const handleDeleteIncomingFriendsRequest = ({ id }: { id: string }) => {
-      setFriendsRequest((prevState) =>
-        prevState.filter((user) => user.id !== id),
-      );
+    const handleDeleteIncomingFriendsRequest = () => {
+      revalidation("/dashboard");
     };
 
     // Subscribe to the pusher channels for incoming and deleted friends requests
@@ -67,14 +55,14 @@ const FriendsRequestsList = ({
   }, []);
 
   // Render a message if there are no friends requests, otherwise render FriendsRequestsListItem components
-  if (friendsRequests.length === 0)
+  if (incomingFriendsRequest.length === 0)
     return (
       <div className={"text-sm text-default-600 mt-6"}>no friends request</div>
     );
 
   return (
     <div className={"mt-6 flex flex-col gap-2"}>
-      {friendsRequests.map((user) => (
+      {incomingFriendsRequest.map((user) => (
         <FriendsRequestsListItem
           name={user.name}
           image={user.image}

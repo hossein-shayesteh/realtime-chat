@@ -32,7 +32,10 @@ const Sidebar = async () => {
       <CardHeader className="justify-between">
         <SidebarHeader />
       </CardHeader>
-      <SidebarLinks unseenFriendsRequest={unseenFriendsRequest.length} />
+      <SidebarLinks
+        unseenFriendsRequest={unseenFriendsRequest.length}
+        session={session}
+      />
       <CardBody className={"p-0 border"}>
         <SidebarChatList friends={friends} currentUserId={session?.user?.id} />
       </CardBody>
