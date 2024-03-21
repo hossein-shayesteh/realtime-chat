@@ -1,6 +1,10 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-export const revalidation = (path: string) => {
-  revalidatePath(path);
+export interface RevalidationProps {
+  originalPath: string;
+  type?: "layout" | "page";
+}
+export const revalidation = (path: RevalidationProps[]) => {
+  path.forEach((href) => revalidatePath(href.originalPath, href?.type));
 };

@@ -42,12 +42,15 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
         status: 400,
       });
 
-    //send realtime friend request
+    //hide friend request on accepting it
     await pusherServer.trigger(
-      toPusherKey(`user:${session.user?.id}:incoming_friend_requests`),
-      "delete_friend_requests",
+      toPusherKey(`user:${session.user?.id}`),
+      "update_interface",
       {
-        id: idToAdd,
+        path: [
+          { originalPath: "/dashboard/addFriends", type: "page" },
+          { originalPath: "/dashboard", type: "layout" },
+        ],
       },
     );
 

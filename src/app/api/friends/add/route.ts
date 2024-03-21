@@ -66,15 +66,15 @@ export const POST = async (request: NextRequest) => {
         status: 400,
       });
 
-    //send realtime friend request
+    //send realtime friend request to other client
     await pusherServer.trigger(
-      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
-      "incoming_friend_requests",
+      toPusherKey(`user:${idToAdd}`),
+      "update_interface",
       {
-        id: session.user?.id,
-        name: session.user?.name,
-        email: session.user?.email,
-        image: session.user?.image,
+        path: [
+          { originalPath: "/dashboard/addFriends", type: "page" },
+          { originalPath: "/dashboard", type: "layout" },
+        ],
       },
     );
 

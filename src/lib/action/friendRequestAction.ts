@@ -18,8 +18,6 @@ const friendRequestAction = async (
       body: JSON.stringify({ session: session, id: senderId }),
     });
 
-    revalidatePath("/dashboard/friendsRequests");
-
     const responseText = await response.text();
     const responseStatus = response.status;
 
