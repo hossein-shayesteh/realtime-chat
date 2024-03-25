@@ -3,7 +3,8 @@ import { Avatar, Divider } from "@nextui-org/react";
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import chatHrefConstructor from "@/src/helpers/chatHrefConstructor";
+import chatIdConstructor from "@/src/helpers/chatIdConstructor";
+import { fetchChatMessages } from "@/src/helpers/fetchChatMessages";
 
 interface Props extends User {
   currentUserId?: string;
@@ -11,12 +12,12 @@ interface Props extends User {
 
 const FiendsChat = ({ name, id, image, email, currentUserId }: Props) => {
   const pathname = usePathname();
-  const href = chatHrefConstructor(id, currentUserId);
+  const chatId = chatIdConstructor(id, currentUserId);
 
   return (
     <Link
-      href={`/dashboard/chat/${href}`}
-      className={`flex flex-col gap-3 pt-3 ${pathname === `/dashboard/chat/${href}` && "bg-gray-100"}`}
+      href={`/dashboard/chat/${chatId}`}
+      className={`flex flex-col gap-3 pt-3 ${pathname === `/dashboard/chat/${chatId}` && "bg-gray-100"}`}
     >
       <div className="flex gap-5 h-8 px-6">
         <Avatar

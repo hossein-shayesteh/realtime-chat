@@ -50,7 +50,7 @@ const Chats = async ({ params: { chatId } }: PageProps) => {
         <ChatBody messages={messages} sessionId={session.user.id} />
       </CardBody>
       <Divider />
-      <CardFooter className={"p-0"}>
+      <CardFooter className={"p-0 shrink-0"}>
         <ChatFooter chatId={chatId} />
       </CardFooter>
     </Card>

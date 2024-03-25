@@ -8,7 +8,7 @@ interface Props {
 
 const SidebarChatList = ({ friends, currentUserId }: Props) => {
   return (
-    <div className={""}>
+    <div>
       {friends.map((user) => (
         <FiendsChat key={user.id} {...user} currentUserId={currentUserId} />
       ))}

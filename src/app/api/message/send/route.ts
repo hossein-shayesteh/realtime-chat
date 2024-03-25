@@ -4,6 +4,8 @@ import fetchRedis from "@/src/helpers/redis";
 import { db } from "@/src/lib/database/db";
 import { ZodError } from "zod";
 import { nanoid } from "nanoid";
+import { pusherServer } from "@/src/lib/pusher/pusher";
+import toPusherKey from "@/src/helpers/toPusherKey";
 
 export const POST = async (request: NextRequest, response: NextResponse) => {
   try {
@@ -49,6 +51,22 @@ export const POST = async (request: NextRequest, response: NextResponse) => {
       score: timestamp,
       member: JSON.stringify(message),
     });
+
+    // send realtime message
+    await pusherServer.trigger(
+      toPusherKey(`user:${receiverId}`),
+      "update_interface",
+      {
+        path: [{ originalPath: `/dashboard/chat/${chatId}`, type: "page" }],
+      },
+    );
+    await pusherServer.trigger(
+      toPusherKey(`user:${senderId}`),
+      "update_interface",
+      {
+        path: [{ originalPath: `/dashboard/chat/${chatId}`, type: "page" }],
+      },
+    );
 
     // Return success response
     return new Response("message has been sent successfully", {
