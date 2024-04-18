@@ -21,7 +21,7 @@ const ValidateProvider = ({ session }: { session: Session | null }) => {
       pusherClient.unsubscribe(toPusherKey(`user:${session?.user?.id}`));
       pusherClient.unbind("update_interface", handleUpdateInterface);
     };
-  }, []);
+  }, [session?.user?.id]);
   return <></>;
 };
 export default ValidateProvider;

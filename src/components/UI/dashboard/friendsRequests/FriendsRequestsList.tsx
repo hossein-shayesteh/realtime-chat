@@ -16,11 +16,11 @@ const FriendsRequestsList = ({
     <div className={"mt-6 flex flex-col gap-2"}>
       {incomingFriendsRequest.map((user) => (
         <FriendsRequestsListItem
-          name={user.name}
-          image={user.image}
-          key={user.id}
-          id={user.id}
-          email={user.email}
+          name={user?.name}
+          image={user?.image}
+          key={user?.id}
+          id={user?.id}
+          email={user?.email}
         />
       ))}
     </div>
